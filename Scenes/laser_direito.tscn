@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://c80rfl782hgc8"]
+
+[ext_resource type="Script" path="res://Scenes/laser_direito.gd" id="1_kajc1"]
+[ext_resource type="Texture2D" uid="uid://c8kljk4nw305k" path="res://Assets/Projectiles/PNGs/Kla'ed - Torpedo.png" id="1_umwxe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cymqx"]
+atlas = ExtResource("1_umwxe")
+region = Rect2(0, 0, 11, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgu4w"]
+atlas = ExtResource("1_umwxe")
+region = Rect2(11, 0, 11, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cf1pa"]
+atlas = ExtResource("1_umwxe")
+region = Rect2(22, 0, 11, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m2ll1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cymqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgu4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cf1pa")
+}],
+"loop": true,
+"name": &"Tiro",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_poaeu"]
+radius = 3.0
+height = 20.0
+
+[node name="LaserDireito" type="Area2D"]
+script = ExtResource("1_kajc1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(15, 0)
+sprite_frames = SubResource("SpriteFrames_m2ll1")
+animation = &"Tiro"
+frame_progress = 0.746313
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(15, -1)
+shape = SubResource("CapsuleShape2D_poaeu")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(15, 15)
+scale = Vector2(0.2, 0.15)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

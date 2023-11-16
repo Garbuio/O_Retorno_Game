@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cinyyjv8rnna"]
+
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_s5v7d"]
+[ext_resource type="PackedScene" uid="uid://ciecnwq1t8ivt" path="res://Scenes/jogador.tscn" id="2_qidxb"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_s5v7d")
+
+[node name="Jogador" parent="." instance=ExtResource("2_qidxb")]
+position = Vector2(2, -5)
+scale = Vector2(1.5, 1.5)
+
+[node name="SpawnJogador" type="Marker2D" parent="."]
+position = Vector2(576, 550)
+
+[node name="LaserContainer" type="Node2D" parent="."]
