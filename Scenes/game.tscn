@@ -23,4 +23,6 @@ autostart = true
 
 [node name="ContainerInimigos" type="Node2D" parent="."]
 
+[node name="ContainerItem" type="Node2D" parent="."]
+
 [connection signal="timeout" from="CriarInimigosTimeout" to="." method="_on_criar_inimigos_timeout_timeout"]

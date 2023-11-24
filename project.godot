@@ -62,3 +62,4 @@ escudo={
 2d_physics/layer_1="Jogador"
 2d_physics/layer_2="Inimigo"
 2d_physics/layer_3="Laser"
+2d_physics/layer_4="Item"
