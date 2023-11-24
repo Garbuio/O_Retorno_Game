@@ -1,10 +1,10 @@
-extends CharacterBody2D
+class_name Jogador extends CharacterBody2D
 
 signal tiro_laser(cena_laser, localizacao)
 
 @onready var pos_laser_dir = $Laser_Direita_Marker
 @onready var pos_laser_esq = $Laser_Esquerdo_Marker
-@export var aceleracao = 300
+@export var aceleracao = 500
 
 var cena_laser = preload("res://Scenes/laser.tscn")
 
@@ -25,3 +25,6 @@ func atirar_direita():
 	
 func atirar_esquerda():
 	tiro_laser.emit(cena_laser, pos_laser_esq.global_position)
+
+func morrer():
+	queue_free()

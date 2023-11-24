@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cinyyjv8rnna"]
+[gd_scene load_steps=4 format=3 uid="uid://cinyyjv8rnna"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_s5v7d"]
 [ext_resource type="PackedScene" uid="uid://dngwdlvwv7dav" path="res://Scenes/inimigo.tscn" id="2_e1vua"]
-[ext_resource type="PackedScene" uid="uid://cmtnnnibaopwi" path="res://Scenes/inimigoBomber.tscn" id="2_kmoji"]
 [ext_resource type="PackedScene" uid="uid://ciecnwq1t8ivt" path="res://Scenes/jogador.tscn" id="2_qidxb"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_s5v7d")
-inimigosRandom = Array[PackedScene]([ExtResource("2_e1vua"), ExtResource("2_kmoji")])
+
+[node name="Inimigo" parent="." instance=ExtResource("2_e1vua")]
+position = Vector2(1, 2)
 
 [node name="Jogador" parent="." instance=ExtResource("2_qidxb")]
 position = Vector2(2, -5)
@@ -17,10 +18,3 @@ scale = Vector2(1.5, 1.5)
 position = Vector2(576, 550)
 
 [node name="LaserContainer" type="Node2D" parent="."]
-
-[node name="CriarInimigosTimeout" type="Timer" parent="."]
-autostart = true
-
-[node name="ContainerInimigos" type="Node2D" parent="."]
-
-[connection signal="timeout" from="CriarInimigosTimeout" to="." method="_on_criar_inimigos_timeout_timeout"]

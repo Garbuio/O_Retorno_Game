@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmtnnnibaopwi"]
+
+[ext_resource type="PackedScene" uid="uid://dngwdlvwv7dav" path="res://Scenes/inimigo.tscn" id="1_2uv66"]
+[ext_resource type="Texture2D" uid="uid://bwviev3ggq7kq" path="res://Assets/Base/PNGs/Kla'ed - Bomber - Base.png" id="2_b860u"]
+
+[node name="Inimigo" instance=ExtResource("1_2uv66")]
+velocidade = 100
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_b860u")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -4)

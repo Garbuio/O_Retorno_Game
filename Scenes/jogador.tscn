@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dx0pm6kku2hv2" path="res://Assets/Base/PNGs/Kla'ed - Frigate - Base.png" id="2_1j7sq"]
 
 [node name="Jogador" type="CharacterBody2D" groups=["Jogador"]]
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_vxv8h")
 
