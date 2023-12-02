@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cinyyjv8rnna"]
+[gd_scene load_steps=6 format=3 uid="uid://cinyyjv8rnna"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_s5v7d"]
 [ext_resource type="PackedScene" uid="uid://dngwdlvwv7dav" path="res://Scenes/inimigo.tscn" id="2_e1vua"]
 [ext_resource type="PackedScene" uid="uid://cmtnnnibaopwi" path="res://Scenes/inimigoBomber.tscn" id="2_kmoji"]
 [ext_resource type="PackedScene" uid="uid://ciecnwq1t8ivt" path="res://Scenes/jogador.tscn" id="2_qidxb"]
+[ext_resource type="PackedScene" uid="uid://4gw8f7047ejy" path="res://Scenes/boss.tscn" id="4_rkic0"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_s5v7d")
 inimigosRandom = Array[PackedScene]([ExtResource("2_e1vua"), ExtResource("2_kmoji")])
+inimigoBoss = ExtResource("4_rkic0")
 
 [node name="Jogador" parent="." instance=ExtResource("2_qidxb")]
 position = Vector2(2, -5)
@@ -21,8 +23,95 @@ position = Vector2(576, 550)
 [node name="CriarInimigosTimeout" type="Timer" parent="."]
 autostart = true
 
+[node name="ContainerBoss" type="Node2D" parent="."]
+
 [node name="ContainerInimigos" type="Node2D" parent="."]
 
 [node name="ContainerItem" type="Node2D" parent="."]
 
+[node name="ScoreLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="ScoreLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1150.0
+offset_bottom = 646.0
+
+[node name="Score" type="Label" parent="ScoreLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="Respawn" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="PlayerWin" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="PlayerWin"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1154.0
+offset_bottom = 648.0
+
+[node name="Panel" type="Panel" parent="PlayerWin/Control"]
+layout_mode = 0
+offset_left = 427.0
+offset_top = 239.0
+offset_right = 770.0
+offset_bottom = 365.0
+
+[node name="LabelGameOver" type="Label" parent="PlayerWin/Control/Panel"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 16.0
+offset_right = 212.0
+offset_bottom = 42.0
+text = "You Win!"
+
+[node name="LabelScore" type="Label" parent="PlayerWin/Control/Panel"]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 63.0
+offset_right = 191.0
+offset_bottom = 86.0
+
+[node name="Gameover" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="Gameover"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1154.0
+offset_bottom = 648.0
+
+[node name="Panel" type="Panel" parent="Gameover/Control"]
+layout_mode = 0
+offset_left = 427.0
+offset_top = 239.0
+offset_right = 770.0
+offset_bottom = 365.0
+
+[node name="LabelGameOver" type="Label" parent="Gameover/Control/Panel"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 16.0
+offset_right = 212.0
+offset_bottom = 42.0
+text = "Game Over"
+
+[node name="LabelScore" type="Label" parent="Gameover/Control/Panel"]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 63.0
+offset_right = 191.0
+offset_bottom = 86.0
+
 [connection signal="timeout" from="CriarInimigosTimeout" to="." method="_on_criar_inimigos_timeout_timeout"]
+[connection signal="timeout" from="Respawn" to="." method="_on_respawn_timeout"]

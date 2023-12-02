@@ -63,3 +63,5 @@ escudo={
 2d_physics/layer_2="Inimigo"
 2d_physics/layer_3="Laser"
 2d_physics/layer_4="Item"
+2d_physics/layer_5="Boss"
+2d_physics/layer_6="BossLaser"

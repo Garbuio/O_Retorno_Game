@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://dyro8wjkrpyhe"]
+
+[ext_resource type="Texture2D" uid="uid://b07crgkkmon7j" path="res://Assets/Projectiles/PNGs/Kla'ed - Wave.png" id="1_s1hji"]
+[ext_resource type="Script" path="res://Scripts/boss_laser.gd" id="1_vapfu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1i2s"]
+atlas = ExtResource("1_s1hji")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phcyy"]
+atlas = ExtResource("1_s1hji")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fddsm"]
+atlas = ExtResource("1_s1hji")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3hwc"]
+atlas = ExtResource("1_s1hji")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_liieb"]
+atlas = ExtResource("1_s1hji")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fehj"]
+atlas = ExtResource("1_s1hji")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xwjc0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1i2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phcyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fddsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3hwc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_liieb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fehj")
+}],
+"loop": true,
+"name": &"big_bullet",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7fxby"]
+height = 40.0
+
+[node name="BossLaser" type="Area2D"]
+collision_layer = 32
+script = ExtResource("1_vapfu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = -3.13597
+scale = Vector2(4.19838, 4.19838)
+sprite_frames = SubResource("SpriteFrames_xwjc0")
+animation = &"big_bullet"
+frame_progress = 0.710861
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+scale = Vector2(7.52, 1.2)
+shape = SubResource("CapsuleShape2D_7fxby")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -7)
+scale = Vector2(7.52, 1.2)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

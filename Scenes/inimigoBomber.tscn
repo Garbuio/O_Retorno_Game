@@ -5,6 +5,8 @@
 
 [node name="Inimigo" instance=ExtResource("1_2uv66")]
 velocidade = 100
+pontos = 100
+life = 2
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_b860u")
